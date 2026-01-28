@@ -4,6 +4,7 @@ import authMiddleWare from "../../middleware/authMiddleWare";
 
 const router: Router = Router();
 
+router.get("/provider", providerController.getprovider);
 router.post(
   "/provider",
   authMiddleWare("PROVIDER"),

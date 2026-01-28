@@ -16,6 +16,14 @@ const createProvider = async (user: User, body: ProviderProfile) => {
   });
 };
 
+// get Provider
+const getProvider = async () => {
+  return await prisma.providerProfile.findMany({
+    include: { meals: true, user: true },
+  });
+};
+
 export const providerService = {
   createProvider,
+  getProvider,
 };

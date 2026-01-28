@@ -2,8 +2,10 @@ import { Category, Role, User } from "../../../generated/prisma/client";
 import { prisma } from "../../lib/prisma";
 
 const getAllCategory = async () => {
-    const category = await prisma.category.findMany();
-    return category
+  const category = await prisma.category.findMany({
+    include: { meals: true },
+  });
+  return category;
 };
 
 const createCategory = async (user: User, body: Partial<Category>) => {

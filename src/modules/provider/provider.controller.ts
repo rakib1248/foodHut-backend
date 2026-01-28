@@ -29,7 +29,21 @@ const createprovider = async (
     next(err);
   }
 };
+const getprovider = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const provider = await providerService.getProvider();
+
+    res.status(200).json({
+      ok: true,
+      message: "provider profile and item get successfully",
+      data: provider,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
 
 export const providerController = {
-  createprovider,
+    createprovider,
+    getprovider
 };
