@@ -9,6 +9,7 @@ import errorHandler from "./middleware/glowbalErrorHandaler";
 import { userRoute} from "./modules/user/user.route";
 import { categoryRoute } from "./modules/category/category.route";
 import { providerRoute } from "./modules/provider/provider.route";
+import { mealRoute } from "./modules/meal/meal.route";
 
 const app: Express = express();
 
@@ -24,6 +25,7 @@ app.use("/api/auth", authRoute);
 app.use(userRoute);
 app.use(categoryRoute);
 app.use(providerRoute);
+app.use(mealRoute);
 
 app.all("/api/auth/*splat", toNodeHandler(auth));
 
