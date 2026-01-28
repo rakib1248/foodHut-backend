@@ -6,6 +6,7 @@ import cors from "cors";
 import { notFound } from "./middleware/notFound";
 import { authRoute } from "./modules/auth/auth.route";
 import errorHandler from "./middleware/glowbalErrorHandaler";
+import { profileRoute } from "./modules/user/user.route";
 
 const app: Express = express();
 
@@ -15,12 +16,12 @@ app.use(
     credentials: true,
   }),
 );
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoute);
+app.use(profileRoute);
 
 app.all("/api/auth/*splat", toNodeHandler(auth));
-
-app.use(express.json());
-
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");

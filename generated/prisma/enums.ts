@@ -20,7 +20,7 @@ export type Role = (typeof Role)[keyof typeof Role]
 
 export const status = {
   ACTIVE: 'ACTIVE',
-  SUSPEMD: 'SUSPEMD'
+  SUSPEND: 'SUSPEND'
 } as const
 
 export type status = (typeof status)[keyof typeof status]

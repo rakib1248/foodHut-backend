@@ -23,7 +23,7 @@ enum Role {
 
 enum status {
   ACTIVE
-  SUSPEMD
+  SUSPEND
 }
 
 
@@ -69,9 +69,9 @@ model User {
 //   updatedAt       DateTime         @updatedAt
 
 //   // Relations
-//   providerProfile ProviderProfile? // শুধুমাত্র যদি সে PROVIDER হয়
-//   orders          Order[]          // কাস্টমারের অর্ডার লিস্ট
-//   reviews         Review[]         // কাস্টমারের দেওয়া রিভিউ
+//   providerProfile ProviderProfile? 
+//   orders          Order[]         
+//   reviews         Review[]         
 // }
 
 model ProviderProfile {
