@@ -7,6 +7,7 @@ import { notFound } from "./middleware/notFound";
 import { authRoute } from "./modules/auth/auth.route";
 import errorHandler from "./middleware/glowbalErrorHandaler";
 import { profileRoute } from "./modules/user/user.route";
+import { categoryRoute } from "./modules/category/category.route";
 
 const app: Express = express();
 
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoute);
 app.use(profileRoute);
+app.use(categoryRoute);
 
 app.all("/api/auth/*splat", toNodeHandler(auth));
 

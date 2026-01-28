@@ -89,6 +89,8 @@ model ProviderProfile {
 model Category {
   id    String @id @default(uuid())
   name  String @unique
+  image  String?
+  publicId  String?
   meals Meal[]
   @@map("category")
 }

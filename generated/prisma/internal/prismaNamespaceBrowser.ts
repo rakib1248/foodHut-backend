@@ -110,7 +110,9 @@ export type ProviderProfileScalarFieldEnum = (typeof ProviderProfileScalarFieldE
 
 export const CategoryScalarFieldEnum = {
   id: 'id',
-  name: 'name'
+  name: 'name',
+  image: 'image',
+  publicId: 'publicId'
 } as const
 
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
