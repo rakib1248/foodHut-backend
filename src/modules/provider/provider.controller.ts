@@ -35,6 +35,24 @@ const getprovider = async (req: Request, res: Response, next: NextFunction) => {
 
     res.status(200).json({
       ok: true,
+      message: "provider profile  get successfully",
+      data: provider,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+const getProviderById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { id } = req.params;
+  try {
+    const provider = await providerService.getProviderById(id as string);
+
+    res.status(200).json({
+      ok: true,
       message: "provider profile and item get successfully",
       data: provider,
     });
@@ -44,6 +62,7 @@ const getprovider = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 export const providerController = {
-    createprovider,
-    getprovider
+  createprovider,
+  getprovider,
+  getProviderById,
 };

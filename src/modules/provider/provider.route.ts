@@ -10,5 +10,13 @@ router.post(
   authMiddleWare("PROVIDER"),
   providerController.createprovider,
 );
+router.get("/provider/:id", providerController.getProviderById);
+
+
+router.post(
+  "/provider",
+  authMiddleWare("PROVIDER"),
+  providerController.createprovider,
+);
 
 export const providerRoute: Router = router;
