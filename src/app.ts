@@ -6,8 +6,9 @@ import cors from "cors";
 import { notFound } from "./middleware/notFound";
 import { authRoute } from "./modules/auth/auth.route";
 import errorHandler from "./middleware/glowbalErrorHandaler";
-import { profileRoute } from "./modules/user/user.route";
+import { userRoute} from "./modules/user/user.route";
 import { categoryRoute } from "./modules/category/category.route";
+import { providerRoute } from "./modules/provider/provider.route";
 
 const app: Express = express();
 
@@ -20,8 +21,9 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoute);
-app.use(profileRoute);
+app.use(userRoute);
 app.use(categoryRoute);
+app.use(providerRoute);
 
 app.all("/api/auth/*splat", toNodeHandler(auth));
 

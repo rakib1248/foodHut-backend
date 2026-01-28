@@ -8,4 +8,4 @@ const router: Router = Router();
 router.get("/user", authMiddleWare(), userController.getUserRoleBase);
 router.patch("/user/:id", authMiddleWare(), userController.updateUser);
 
-export const profileRoute: Router = router;
+export const userRoute: Router = router;
