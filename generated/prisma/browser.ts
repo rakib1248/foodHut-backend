@@ -38,6 +38,16 @@ export type Category = Prisma.CategoryModel
  */
 export type Meal = Prisma.MealModel
 /**
+ * Model Cart
+ * 
+ */
+export type Cart = Prisma.CartModel
+/**
+ * Model CartItem
+ * 
+ */
+export type CartItem = Prisma.CartItemModel
+/**
  * Model Order
  * 
  */

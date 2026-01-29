@@ -46,6 +46,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   // Relations
+  cart          Cart?
   providerProfile ProviderProfile? 
   orders          Order[] 
   reviews         Review[] 
@@ -58,21 +59,7 @@ model User {
 
   @@map("user")
 }
-// model User {
-//   id              String           @id @default(cuid())
-//   name            String
-//   email           String           @unique
-//   password        String
-//   role            Role             @default(CUSTOMER)
-//   image           String?
-//   createdAt       DateTime         @default(now())
-//   updatedAt       DateTime         @updatedAt
 
-//   // Relations
-//   providerProfile ProviderProfile? 
-//   orders          Order[]         
-//   reviews         Review[]         
-// }
 
 model ProviderProfile {
   id           String  @id @default(uuid())
@@ -107,11 +94,41 @@ model Meal {
   providerId  String
   provider    ProviderProfile @relation(fields: [providerId], references: [id])
 
+  cartItems     CartItem[]
   orderItems OrderItem[]
   reviews    Review[]
 
   @@map("meat")
 
+}
+
+
+
+
+model Cart {
+  id        String   @id @default(uuid())
+  userId    String   @unique 
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items     CartItem[] 
+
+  @@map("cart")
+}
+
+
+model CartItem {
+  id        String   @id @default(uuid())
+  quantity  Int      @default(1)
+  
+  cartId    String
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  
+  mealId    String
+  meal      Meal     @relation(fields: [mealId], references: [id])
+
+  @@map("cartItem")
 }
 
 model Order {

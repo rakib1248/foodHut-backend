@@ -6,10 +6,12 @@ import cors from "cors";
 import { notFound } from "./middleware/notFound";
 import { authRoute } from "./modules/auth/auth.route";
 import errorHandler from "./middleware/glowbalErrorHandaler";
-import { userRoute} from "./modules/user/user.route";
+import { userRoute } from "./modules/user/user.route";
 import { categoryRoute } from "./modules/category/category.route";
 import { providerRoute } from "./modules/provider/provider.route";
 import { mealRoute } from "./modules/meal/meal.route";
+import { orderRoute } from "./modules/order/order.route";
+import { cardRoute } from "./modules/card/card.route";
 
 const app: Express = express();
 
@@ -26,6 +28,8 @@ app.use(userRoute);
 app.use(categoryRoute);
 app.use(providerRoute);
 app.use(mealRoute);
+app.use(orderRoute);
+app.use(cardRoute);
 
 app.all("/api/auth/*splat", toNodeHandler(auth));
 

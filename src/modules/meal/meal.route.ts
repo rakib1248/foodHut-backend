@@ -4,6 +4,12 @@ import authMiddleWare from "../../middleware/authMiddleWare";
 
 const router = Router();
 router.get("/meal", mealController.getAllMeal);
-router.post("/meal"  , authMiddleWare("PROVIDER"), mealController.createMeal);
+router.get("/meal/:id", mealController.getMealById);
+router.post("/meal", authMiddleWare("PROVIDER"), mealController.createMeal);
+router.patch(
+  "/meal/:id",
+  authMiddleWare("PROVIDER"),
+  mealController.updateMeal,
+);
 
 export const mealRoute: Router = router;

@@ -55,6 +55,8 @@ export const ModelName = {
   ProviderProfile: 'ProviderProfile',
   Category: 'Category',
   Meal: 'Meal',
+  Cart: 'Cart',
+  CartItem: 'CartItem',
   Order: 'Order',
   OrderItem: 'OrderItem',
   Review: 'Review',
@@ -130,6 +132,26 @@ export const MealScalarFieldEnum = {
 } as const
 
 export type MealScalarFieldEnum = (typeof MealScalarFieldEnum)[keyof typeof MealScalarFieldEnum]
+
+
+export const CartScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CartScalarFieldEnum = (typeof CartScalarFieldEnum)[keyof typeof CartScalarFieldEnum]
+
+
+export const CartItemScalarFieldEnum = {
+  id: 'id',
+  quantity: 'quantity',
+  cartId: 'cartId',
+  mealId: 'mealId'
+} as const
+
+export type CartItemScalarFieldEnum = (typeof CartItemScalarFieldEnum)[keyof typeof CartItemScalarFieldEnum]
 
 
 export const OrderScalarFieldEnum = {
