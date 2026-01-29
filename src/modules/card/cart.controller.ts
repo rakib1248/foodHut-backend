@@ -47,7 +47,50 @@ const getCartItem = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+const updateQuantity = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ ok: false, message: "Unauthorized" });
+    }
+    const { cartItemId } = req.params;
+    const { quantity } = req.body;
+    const userId = req.user.id;
+
+    const result = await cartService.updateCartItemQuantity(
+      userId,
+      cartItemId as string,
+      quantity,
+    );
+
+    res.status(200).json({ ok: true, data: result });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const removeItem = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ ok: false, message: "Unauthorized" });
+    }
+    const { cartItemId } = req.params;
+    const userId = req.user.id;
+
+    await cartService.removeCartItem(userId, cartItemId as string);
+
+    res.status(200).json({ ok: true, message: "Item removed successfully" });
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const cartController = {
-    addToCart,
-    getCartItem
+  addToCart,
+  getCartItem,
+    updateQuantity,
+  removeItem
 };
