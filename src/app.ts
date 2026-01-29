@@ -12,6 +12,7 @@ import { providerRoute } from "./modules/provider/provider.route";
 import { mealRoute } from "./modules/meal/meal.route";
 import { orderRoute } from "./modules/order/order.route";
 import { cardRoute } from "./modules/card/card.route";
+import { reviewRoute } from "./modules/review/review.route";
 
 const app: Express = express();
 
@@ -30,6 +31,7 @@ app.use(providerRoute);
 app.use(mealRoute);
 app.use(orderRoute);
 app.use(cardRoute);
+app.use(reviewRoute);
 
 app.all("/api/auth/*splat", toNodeHandler(auth));
 

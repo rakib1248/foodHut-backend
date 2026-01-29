@@ -1,4 +1,4 @@
-import { Role, User } from "../../../generated/prisma/client";
+import { OrderStatus, Role, User } from "../../../generated/prisma/client";
 import { prisma } from "../../lib/prisma";
 
 const createOrder = async (userId: string, address: string) => {
@@ -91,7 +91,57 @@ const getOrders = async (user: User) => {
   });
 };
 
+const cancelOrderByCustomer = async (orderId: string, userId: string) => {
+  const order = await prisma.order.findUnique({ where: { id: orderId } });
+
+  if (!order || order.customerId !== userId) {
+    throw new Error("Order not found or unauthorized.");
+  }
+
+  // Business Logic: Shudhu PLACED status thakle-i cancel kora jabe
+  if (order.status !== OrderStatus.PLACED) {
+    throw new Error(
+      "Cannot cancel order after it has been accepted or prepared.",
+    );
+  }
+
+  return await prisma.order.update({
+    where: { id: orderId },
+    data: { status: OrderStatus.CANCELLED }, // OrderStatus Enum-e CANCELLED thakte hobe
+  });
+};
+
+
+const updateOrderStatusByProvider = async (
+  orderId: string,
+  status: OrderStatus,
+  userId: string,
+) => {
+  const provider = await prisma.providerProfile.findUnique({
+    where: { userId },
+  });
+
+  const order = await prisma.order.findUnique({ where: { id: orderId } });
+
+  if (!order || !provider || order.providerId !== provider.id) {
+    throw new Error("Unauthorized: You can only update your own orders.");
+  }
+
+    if (order.status === OrderStatus.CANCELLED) {
+      throw new Error(
+        "Cannot change order status after it has been cancelled or prepared.",
+      );
+    }
+
+  return await prisma.order.update({
+    where: { id: orderId },
+    data: { status },
+  });
+};
+
 export const orderService = {
   createOrder,
   getOrders,
+  cancelOrderByCustomer,
+  updateOrderStatusByProvider,
 };
