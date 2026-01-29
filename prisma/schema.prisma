@@ -70,6 +70,7 @@ model ProviderProfile {
   userId       String  @unique
   user         User    @relation(fields: [userId], references: [id])
   meals        Meal[] 
+  order      Order[]
   @@map("providerProfile")
 }
 
@@ -139,6 +140,10 @@ model Order {
   createdAt   DateTime    @default(now())
   customerId  String
   customer    User        @relation(fields: [customerId], references: [id])
+
+  providerId  String
+  provider    ProviderProfile @relation(fields: [providerId], references: [id])
+
 
   items OrderItem[]
   @@map("order")
