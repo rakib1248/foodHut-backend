@@ -9,7 +9,7 @@ const getAllCategory = async () => {
 };
 
 const createCategory = async (user: User, body: Partial<Category>) => {
-  if (user.role !== Role.ADMIN) {
+  if (user.role === Role.CUSTOMER) {
     throw new Error("Forbidden: Only admins can create categories");
   }
 
@@ -30,7 +30,7 @@ const updateCategory = async (
   user: User,
   body: Partial<Category>,
 ) => {
-  if (user.role !== Role.ADMIN) {
+  if (user.role === Role.CUSTOMER) {
     throw new Error("Forbidden: Only admins can update categories");
   }
 
@@ -46,7 +46,7 @@ const updateCategory = async (
 
 // Delete Category
 const deleteCategory = async (id: string, user: User) => {
-  if (user.role !== Role.ADMIN) {
+  if (user.role === Role.CUSTOMER) {
     throw new Error("Forbidden: Only admins can delete categories");
   }
 

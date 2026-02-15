@@ -3,14 +3,20 @@ import { Role } from "../../../generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
 
 // create provider Profile
+
 const createProvider = async (user: User, body: ProviderProfile) => {
   if (user.role !== Role.PROVIDER) {
     throw new Error("Forbidden: Only Provider can create profile");
   }
 
+  const { businessName, description, address, phone } = body;
+
   return await prisma.providerProfile.create({
     data: {
-      ...body,
+      businessName, // এখানে ভ্যালু না থাকলে Prisma এরর দিবে
+      description,
+      address,
+      phone,
       userId: user.id,
     },
   });
@@ -19,7 +25,7 @@ const createProvider = async (user: User, body: ProviderProfile) => {
 // get Provider
 const getProvider = async () => {
   return await prisma.providerProfile.findMany({
-    include: { user: true },
+    include: { user: true, meals: true },
   });
 };
 // get single Provider and meals

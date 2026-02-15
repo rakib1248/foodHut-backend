@@ -41,7 +41,7 @@ const addToCart = async (
 };
 
 const getCartItem = async (userId: string) => {
-  const cardItem = await prisma.cart.findMany({
+  const cardItem = await prisma.cart.findUnique({
     where: { userId },
     include: {
       items: {
@@ -57,23 +57,26 @@ const getCartItem = async (userId: string) => {
   return cardItem;
 };
 
-
 // ৩. কোয়ান্টিটি আপডেট করা (NEW)
-const updateCartItemQuantity = async (userId: string, cartItemId: string, quantity: number) => {
+const updateCartItemQuantity = async (
+  userId: string,
+  cartItemId: string,
+  quantity: number,
+) => {
   // ভ্যালিডেশন: কোয়ান্টিটি ১ এর নিচে হতে পারবে না
   if (quantity < 1) {
     throw new Error("Quantity must be at least 1");
   }
 
-  // সিকিউরিটি চেক: এই আইটেমটি কি আসলেই এই ইউজারের কার্ডের? 
+  // সিকিউরিটি চেক: এই আইটেমটি কি আসলেই এই ইউজারের কার্ডের?
   // এটা না করলে অন্য ইউজার আইডি জেনে আপনার কার্ড আপডেট করে দিতে পারে।
   const cartItem = await prisma.cartItem.findFirst({
     where: {
       id: cartItemId,
       cart: {
-        userId: userId
-      }
-    }
+        userId: userId,
+      },
+    },
   });
 
   if (!cartItem) {
@@ -84,10 +87,9 @@ const updateCartItemQuantity = async (userId: string, cartItemId: string, quanti
   return await prisma.cartItem.update({
     where: { id: cartItemId },
     data: { quantity: quantity },
-    include: { meal: true } // আপডেটেড ডাটা সাথে মিল ইনফো রিটার্ন করলাম
+    include: { meal: true }, // আপডেটেড ডাটা সাথে মিল ইনফো রিটার্ন করলাম
   });
 };
-
 
 const removeCartItem = async (userId: string, cartItemId: string) => {
   // সিকিউরিটি চেক
@@ -95,9 +97,9 @@ const removeCartItem = async (userId: string, cartItemId: string) => {
     where: {
       id: cartItemId,
       cart: {
-        userId: userId
-      }
-    }
+        userId: userId,
+      },
+    },
   });
 
   if (!cartItem) {

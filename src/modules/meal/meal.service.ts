@@ -1,10 +1,52 @@
 import { Meal, Role, User } from "../../../generated/prisma/client";
 import { prisma } from "../../lib/prisma";
 
-// get Provider
-const getAllMeal = async () => {
+const getAllMeal = async (filters?: {
+  categoryId?: string;
+  providerId?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  isAvailable?: boolean;
+  search?: string;
+}) => {
+  const where: any = {};
+
+  // Category filter (cuisine)
+  if (filters?.categoryId) {
+    where.categoryId = filters.categoryId;
+  }
+
+  // Provider filter
+  if (filters?.providerId) {
+    where.providerId = filters.providerId;
+  }
+
+  // Price range filter
+  if (filters?.minPrice !== undefined || filters?.maxPrice !== undefined) {
+    where.price = {};
+    if (filters.minPrice !== undefined) {
+      where.price.gte = filters.minPrice;
+    }
+    if (filters.maxPrice !== undefined) {
+      where.price.lte = filters.maxPrice;
+    }
+  }
+
+  // Availability filter
+  if (filters?.isAvailable !== undefined) {
+    where.isAvailable = filters.isAvailable;
+  }
+
+  // Search filter (name or description)
+  if (filters?.search) {
+    where.OR = [
+      { name: { contains: filters.search, mode: "insensitive" } },
+      { description: { contains: filters.search, mode: "insensitive" } },
+    ];
+  }
   return await prisma.meal.findMany({
-    include: { provider: true },
+    where,
+    include: { provider: true, category: true, reviews: true },
   });
 };
 const getMealById = async (id: string) => {
@@ -72,9 +114,45 @@ const updateMeal = async (user: User, body: Partial<Meal>, mealId: string) => {
   });
 };
 
+const deleteMeal = async (id: string, user: User) => {
+  if (user.role === Role.ADMIN) {
+    return await prisma.meal.delete({
+      where: { id },
+    });
+  }
+
+  if (user.role === Role.PROVIDER) {
+    const provider = await prisma.providerProfile.findUnique({
+      where: { userId: user.id },
+    });
+
+    if (!provider) {
+      throw new Error("Provider profile not found");
+    }
+
+    const deleted = await prisma.meal.deleteMany({
+      where: {
+        id: id,
+        providerId: provider.id,
+      },
+    });
+
+    if (deleted.count === 0) {
+      throw new Error(
+        "Unauthorized: This meal does not belong to you or does not exist",
+      );
+    }
+
+    return { message: "Meal deleted successfully" };
+  }
+
+  throw new Error("Forbidden: Access denied");
+};
+
 export const mealService = {
   getAllMeal,
   createMeal,
   updateMeal,
   getMealById,
+  deleteMeal,
 };

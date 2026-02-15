@@ -9,19 +9,19 @@ router.get("/category", categoryController.getAllCategory);
 
 router.post(
   "/category",
-  authMiddleWare("ADMIN"),
+  authMiddleWare("ADMIN", "PROVIDER"),
   categoryController.creatCategory,
 );
 
 router.patch(
   "/category/:id",
-  authMiddleWare("ADMIN"),
+  authMiddleWare("ADMIN","PROVIDER"),
   categoryController.updateCategory,
 );
 
 router.delete(
   "/category/:id",
-  authMiddleWare("ADMIN"),
+  authMiddleWare("ADMIN" , "PROVIDER"),
   categoryController.deleteCategory,
 );
 

@@ -18,26 +18,25 @@ const app: Express = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://192.168.8.169:3000"],
+    origin: ["http://localhost:3000"],
     credentials: true,
   }),
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoute);
-app.use(userRoute);
-app.use(categoryRoute);
-app.use(providerRoute);
-app.use(mealRoute);
-app.use(orderRoute);
-app.use(cardRoute);
-app.use(reviewRoute);
+app.use("/api", userRoute);
+app.use("/api", categoryRoute);
+app.use("/api", providerRoute);
+app.use("/api", mealRoute);
+app.use("/api", orderRoute);
+app.use("/api", cardRoute);
+app.use("/api", reviewRoute);
 
-app.all("/api/auth/*splat", toNodeHandler(auth));
-
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
+(app.all("/api/auth/*splat", toNodeHandler(auth)),
+  app.get("/", (req, res) => {
+    res.send("Hello, World!");
+  }));
 
 app.use(notFound);
 app.use(errorHandler);

@@ -63,13 +63,11 @@ const updateOrderStatusByProvider = async (
       req.body.status,
       req.user.id as string,
     );
-    res
-      .status(201)
-      .json({
-        ok: true,
-        data: order,
-        message: "order status update successfully",
-      });
+    res.status(201).json({
+      ok: true,
+      data: order,
+      message: "order status update successfully",
+    });
   } catch (err) {
     next(err);
   }

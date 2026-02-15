@@ -35,17 +35,17 @@ const updateUser = async (
   payload: Partial<User>,
   requester: User,
 ) => {
-  if (requester.role === Role.ADMIN) {
-    return await prisma.user.update({
-      where: { id: id },
-      data: { status: payload.status },
-    });
-  }
-
   if (requester.id === id) {
     return await prisma.user.update({
       where: { id: id },
       data: { name: payload.name },
+    });
+  }
+  
+  if (requester.role === Role.ADMIN) {
+    return await prisma.user.update({
+      where: { id: id },
+      data: { status: payload.status },
     });
   }
 
