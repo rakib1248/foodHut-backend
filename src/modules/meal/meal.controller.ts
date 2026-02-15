@@ -2,13 +2,13 @@ import { NextFunction, Request, Response } from "express";
 import { mealService } from "./meal.service";
 import { User } from "../../../generated/prisma/client";
 
-declare global {
-  namespace Express {
-    interface Request {
-      user?: any;
-    }
-  }
-}
+// declare global {
+//   namespace Express {
+//     interface Request {
+//       user?: any;
+//     }
+//   }
+// }
 
 const getAllMeal = async (req: Request, res: Response, next: NextFunction) => {
   try {
