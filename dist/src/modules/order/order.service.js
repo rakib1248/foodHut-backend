@@ -1,5 +1,5 @@
-import { OrderStatus, Role } from "../../../generated/prisma/client";
-import { prisma } from "../../lib/prisma";
+import { OrderStatus, Role } from "../../../generated/prisma/enums.js";
+import { prisma } from "../../lib/prisma.js";
 // const createOrder = async (userId: string, address: string) => {
 //   const cart = await prisma.cart.findUnique({
 //     where: { userId },
@@ -157,3 +157,4 @@ export const orderService = {
     cancelOrderByCustomer,
     updateOrderStatusByProvider,
 };
+//# sourceMappingURL=order.service.js.map

@@ -1,4 +1,4 @@
-import { auth as betterAuth } from "../lib/auth";
+import { auth as betterAuth } from "../lib/auth.js";
 const authMiddleWare = (...roles) => {
     return async (req, res, next) => {
         try {
@@ -33,3 +33,4 @@ const authMiddleWare = (...roles) => {
     };
 };
 export default authMiddleWare;
+//# sourceMappingURL=authMiddleWare.js.map

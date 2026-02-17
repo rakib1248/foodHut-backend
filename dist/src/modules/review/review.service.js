@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../lib/prisma.js";
 const createReview = async (userId, mealId, rating, comment) => {
     if (rating < 1 || rating > 5) {
         throw new Error("Rating must be between 1 and 5.");
@@ -35,3 +35,4 @@ export const reviewService = {
     createReview,
     getMealReviews,
 };
+//# sourceMappingURL=review.service.js.map

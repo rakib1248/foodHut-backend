@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../lib/prisma.js";
 const addToCart = async (userId, mealId, quantity = 1) => {
     let cart = await prisma.cart.findUnique({
         where: { userId },
@@ -96,3 +96,4 @@ export const cartService = {
     updateCartItemQuantity,
     removeCartItem,
 };
+//# sourceMappingURL=card%20.service.js.map

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { User } from "../../../generated/prisma/client";
-import { providerService } from "./provider.service";
+import { User } from "../../../generated/prisma/client.js";
+import { providerService } from "./provider.service.js";
 
 const createprovider = async (
   req: Request,

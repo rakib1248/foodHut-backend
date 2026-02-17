@@ -1,5 +1,5 @@
-import app from "./app";
-import { prisma } from "./lib/prisma";
+import app from "./app.js";
+import { prisma } from "./lib/prisma.js";
 const PORT = process.env.PORT || 3000;
 function main() {
     try {
@@ -17,3 +17,4 @@ function main() {
     }
 }
 main();
+//# sourceMappingURL=server.js.map

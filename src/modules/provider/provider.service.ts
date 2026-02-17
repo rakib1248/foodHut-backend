@@ -1,6 +1,6 @@
-import { ProviderProfile, User } from "../../../generated/prisma/client";
-import { Role } from "../../../generated/prisma/enums";
-import { prisma } from "../../lib/prisma";
+import { ProviderProfile, User } from "../../../generated/prisma/client.js";
+import { Role } from "../../../generated/prisma/enums.js";
+import { prisma } from "../../lib/prisma.js";
 
 // create provider Profile
 

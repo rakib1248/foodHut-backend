@@ -1,4 +1,4 @@
-import { cartService } from "./card .service";
+import { cartService } from "./card .service.js";
 const addToCart = async (req, res, next) => {
     try {
         if (!req.user) {
@@ -74,3 +74,4 @@ export const cartController = {
     updateQuantity,
     removeItem
 };
+//# sourceMappingURL=cart.controller.js.map

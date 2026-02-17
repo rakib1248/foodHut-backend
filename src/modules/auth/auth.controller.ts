@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { authService } from "./auth.service";
+import { authService } from "./auth.service.js";
 
 const getUser = async (req: Request, res: Response, next: NextFunction) => {
   try {

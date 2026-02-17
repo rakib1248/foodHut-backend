@@ -1,5 +1,5 @@
-import { Role } from "../../../generated/prisma/enums";
-import { prisma } from "../../lib/prisma";
+import { Role } from "../../../generated/prisma/enums.js";
+import { prisma } from "../../lib/prisma.js";
 // create provider Profile
 const createProvider = async (user, body) => {
     if (user.role !== Role.PROVIDER) {
@@ -34,3 +34,4 @@ export const providerService = {
     getProvider,
     getProviderById,
 };
+//# sourceMappingURL=provider.service.js.map

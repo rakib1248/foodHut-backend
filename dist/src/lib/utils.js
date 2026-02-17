@@ -44,3 +44,4 @@ export const emailTemp = (url) => {
 </body>
 </html>`;
 };
+//# sourceMappingURL=utils.js.map

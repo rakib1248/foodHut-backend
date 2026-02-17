@@ -1,5 +1,6 @@
-import { Role, User } from "../../../generated/prisma/client";
-import { prisma } from "../../lib/prisma";
+import {  User } from "../../../generated/prisma/client.js";
+import { Role } from "../../../generated/prisma/enums.js";
+import { prisma } from "../../lib/prisma.js";
 
 const getUserRoleBase = async (paylode: User) => {
   if (paylode.role === Role.PROVIDER) {

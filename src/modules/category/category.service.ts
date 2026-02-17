@@ -1,5 +1,6 @@
-import { Category, Role, User } from "../../../generated/prisma/client";
-import { prisma } from "../../lib/prisma";
+import { Category,  User } from "../../../generated/prisma/client.js";
+import { Role } from "../../../generated/prisma/enums.js";
+import { prisma } from "../../lib/prisma.js";
 
 const getAllCategory = async () => {
   const category = await prisma.category.findMany({

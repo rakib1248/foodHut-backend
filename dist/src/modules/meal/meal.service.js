@@ -1,5 +1,5 @@
-import { Role } from "../../../generated/prisma/client";
-import { prisma } from "../../lib/prisma";
+import { Role } from "../../../generated/prisma/enums.js";
+import { prisma } from "../../lib/prisma.js";
 const getAllMeal = async (filters) => {
     const where = {};
     // Category filter (cuisine)
@@ -123,3 +123,4 @@ export const mealService = {
     getMealById,
     deleteMeal,
 };
+//# sourceMappingURL=meal.service.js.map

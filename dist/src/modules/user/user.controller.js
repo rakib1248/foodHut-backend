@@ -1,4 +1,4 @@
-import { userService } from "./user.service";
+import { userService } from "./user.service.js";
 const getUserRoleBase = async (req, res, next) => {
     try {
         if (!req.user) {
@@ -38,3 +38,4 @@ export const userController = {
     getUserRoleBase,
     updateUser,
 };
+//# sourceMappingURL=user.controller.js.map

@@ -1,4 +1,4 @@
-import { categoryService } from "./category.service";
+import { categoryService } from "./category.service.js";
 const creatCategory = async (req, res, next) => {
     try {
         if (!req.user) {
@@ -64,3 +64,4 @@ export const categoryController = {
     deleteCategory,
     getAllCategory,
 };
+//# sourceMappingURL=category.controller.js.map

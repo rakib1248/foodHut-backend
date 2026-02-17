@@ -1,7 +1,7 @@
-import { status } from "./../../../generated/prisma/enums";
+
 import { NextFunction, Request, Response } from "express";
-import { orderService } from "./order.service";
-import { User } from "../../../generated/prisma/client";
+import { orderService } from "./order.service.js";
+import { User } from "../../../generated/prisma/client.js";
 
 const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {

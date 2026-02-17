@@ -5,3 +5,4 @@ export function notFound(req, res) {
         date: Date(),
     });
 }
+//# sourceMappingURL=notFound.js.map

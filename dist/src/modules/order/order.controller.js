@@ -1,4 +1,4 @@
-import { orderService } from "./order.service";
+import { orderService } from "./order.service.js";
 const createOrder = async (req, res, next) => {
     try {
         if (!req.user) {
@@ -63,3 +63,4 @@ export const orderController = {
     cancelOrderByCustomer,
     updateOrderStatusByProvider,
 };
+//# sourceMappingURL=order.controller.js.map

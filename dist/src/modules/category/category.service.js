@@ -1,5 +1,5 @@
-import { Role } from "../../../generated/prisma/client";
-import { prisma } from "../../lib/prisma";
+import { Role } from "../../../generated/prisma/enums.js";
+import { prisma } from "../../lib/prisma.js";
 const getAllCategory = async () => {
     const category = await prisma.category.findMany({
         include: { meals: true },
@@ -48,3 +48,4 @@ export const categoryService = {
     deleteCategory,
     getAllCategory,
 };
+//# sourceMappingURL=category.service.js.map

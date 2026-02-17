@@ -1,5 +1,6 @@
-import { Meal, Role, User } from "../../../generated/prisma/client";
-import { prisma } from "../../lib/prisma";
+import { Meal, User } from "../../../generated/prisma/client.js";
+import { Role } from "../../../generated/prisma/enums.js";
+import { prisma } from "../../lib/prisma.js";
 
 const getAllMeal = async (filters?: {
   categoryId?: string;

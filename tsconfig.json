@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "bundler" /* This removes the .js extension requirement */,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "rootDir": ".",
     "outDir": "dist",
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "skipDefaultLibCheck": true,
     "strict": true,
-    "noEmit": false
+    "noEmit": false,
+    "sourceMap": true
   },
-  "include": ["src/**/*" , "generated/**/*"],
+  "include": ["src/**/*", "generated/**/*"],
   "exclude": ["node_modules", "dist"]
 }

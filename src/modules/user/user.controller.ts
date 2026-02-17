@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { userService } from "./user.service";
-import { User } from "../../../generated/prisma/client";
+import { userService } from "./user.service.js";
+import { User } from "../../../generated/prisma/client.js";
 
 const getUserRoleBase = async (
   req: Request,

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { auth as betterAuth } from "../lib/auth";
-import { Role } from "../../generated/prisma/enums";
+import { auth as betterAuth } from "../lib/auth.js";
+import { Role } from "../../generated/prisma/enums.js";
 
 
 // export enum UserRole {

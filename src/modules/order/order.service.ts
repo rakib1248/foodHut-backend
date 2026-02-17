@@ -1,5 +1,6 @@
-import { OrderStatus, Role, User } from "../../../generated/prisma/client";
-import { prisma } from "../../lib/prisma";
+import {  User } from "../../../generated/prisma/client.js";
+import { OrderStatus, Role } from "../../../generated/prisma/enums.js";
+import { prisma } from "../../lib/prisma.js";
 
 // const createOrder = async (userId: string, address: string) => {
 
@@ -68,7 +69,7 @@ const createOrder = async (userId: string, address: string) => {
 
   const itemsByProvider: Record<string, typeof cart.items> = {};
 
-  cart.items.forEach((item) => {
+  cart.items.forEach((item : any) => {
     const pId = item.meal.providerId;
     if (!itemsByProvider[pId]) {
       itemsByProvider[pId] = [];
@@ -77,13 +78,13 @@ const createOrder = async (userId: string, address: string) => {
   });
 
 
-  return await prisma.$transaction(async (tx) => {
+  return await prisma.$transaction(async (tx: any) => {
     const createdOrders = [];
 
     
     for (const [pId, items] of Object.entries(itemsByProvider)) {
       const totalAmount = items.reduce(
-        (acc, item) => acc + item.meal.price * item.quantity,
+        (acc : any, item: any) => acc + item.meal.price * item.quantity,
         0,
       );
 
@@ -98,7 +99,7 @@ const createOrder = async (userId: string, address: string) => {
       });
 
       
-      const orderItemsData = items.map((item) => ({
+      const orderItemsData = items.map((item:any) => ({
         orderId: newOrder.id,
         mealId: item.mealId,
         quantity: item.quantity,

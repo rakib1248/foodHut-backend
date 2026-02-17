@@ -1,18 +1,18 @@
 import express, { Express } from "express";
 
 import { toNodeHandler } from "better-auth/node";
-import { auth } from "./lib/auth";
+import { auth } from "./lib/auth.js";
 import cors from "cors";
-import { notFound } from "./middleware/notFound";
-import { authRoute } from "./modules/auth/auth.route";
-import errorHandler from "./middleware/glowbalErrorHandaler";
-import { userRoute } from "./modules/user/user.route";
-import { categoryRoute } from "./modules/category/category.route";
-import { providerRoute } from "./modules/provider/provider.route";
-import { mealRoute } from "./modules/meal/meal.route";
-import { orderRoute } from "./modules/order/order.route";
-import { cardRoute } from "./modules/card/card.route";
-import { reviewRoute } from "./modules/review/review.route";
+import { notFound } from "./middleware/notFound.js";
+import { authRoute } from "./modules/auth/auth.route.js";
+import errorHandler from "./middleware/glowbalErrorHandaler.js";
+import { userRoute } from "./modules/user/user.route.js";
+import { categoryRoute } from "./modules/category/category.route.js";
+import { providerRoute } from "./modules/provider/provider.route.js";
+import { mealRoute } from "./modules/meal/meal.route.js";
+import { orderRoute } from "./modules/order/order.route.js";
+import { cardRoute } from "./modules/card/card.route.js";
+import { reviewRoute } from "./modules/review/review.route.js";
 
 const app: Express = express();
 

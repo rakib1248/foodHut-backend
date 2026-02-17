@@ -1,5 +1,5 @@
-import { Role } from "../../../generated/prisma/client";
-import { prisma } from "../../lib/prisma";
+import { Role } from "../../../generated/prisma/enums.js";
+import { prisma } from "../../lib/prisma.js";
 const getUserRoleBase = async (paylode) => {
     if (paylode.role === Role.PROVIDER) {
         const user = await prisma.user.findUnique({
@@ -43,3 +43,4 @@ export const userService = {
     getUserRoleBase,
     updateUser,
 };
+//# sourceMappingURL=user.service.js.map

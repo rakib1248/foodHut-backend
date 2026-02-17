@@ -1,4 +1,4 @@
-import { reviewService } from "./review.service";
+import { reviewService } from "./review.service.js";
 const createReview = async (req, res, next) => {
     try {
         if (!req.user) {
@@ -20,3 +20,4 @@ const createReview = async (req, res, next) => {
 export const reviewController = {
     createReview,
 };
+//# sourceMappingURL=review.controller.js.map

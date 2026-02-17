@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { mealService } from "./meal.service";
-import { User } from "../../../generated/prisma/client";
+import { mealService } from "./meal.service.js";
+import { User } from "../../../generated/prisma/client.js";
 
 // declare global {
 //   namespace Express {

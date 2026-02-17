@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { mealController } from "./meal.controller";
-import authMiddleWare from "../../middleware/authMiddleWare";
+import { mealController } from "./meal.controller.js";
+import authMiddleWare from "../../middleware/authMiddleWare.js";
 
 const router = Router();
 router.get("/meal", mealController.getAllMeal);

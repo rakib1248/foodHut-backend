@@ -1,4 +1,4 @@
-import { Prisma } from "../../generated/prisma/client";
+import { Prisma } from "../../generated/prisma/client.js";
 function errorHandler(err, req, res, next) {
     let statusCode = err.statusCode || 500;
     let message = err.message || "Internal Server Error";
@@ -40,3 +40,4 @@ function errorHandler(err, req, res, next) {
     });
 }
 export default errorHandler;
+//# sourceMappingURL=glowbalErrorHandaler.js.map

@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../lib/prisma.js";
 const getUserById = async (id) => {
     const user = await prisma.user.findUnique({
         where: { id },
@@ -9,3 +9,4 @@ const getUserById = async (id) => {
 export const authService = {
     getUserById,
 };
+//# sourceMappingURL=auth.service.js.map

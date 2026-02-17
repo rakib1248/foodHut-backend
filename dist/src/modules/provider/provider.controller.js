@@ -1,4 +1,4 @@
-import { providerService } from "./provider.service";
+import { providerService } from "./provider.service.js";
 const createprovider = async (req, res, next) => {
     try {
         if (!req.user) {
@@ -49,3 +49,4 @@ export const providerController = {
     getprovider,
     getProviderById,
 };
+//# sourceMappingURL=provider.controller.js.map

@@ -1,4 +1,4 @@
-import { authService } from "./auth.service";
+import { authService } from "./auth.service.js";
 const getUser = async (req, res, next) => {
     try {
         if (!req.user) {
@@ -17,3 +17,4 @@ const getUser = async (req, res, next) => {
 export const authController = {
     getUser,
 };
+//# sourceMappingURL=auth.controller.js.map

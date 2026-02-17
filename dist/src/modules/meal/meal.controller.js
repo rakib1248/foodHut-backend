@@ -1,4 +1,4 @@
-import { mealService } from "./meal.service";
+import { mealService } from "./meal.service.js";
 // declare global {
 //   namespace Express {
 //     interface Request {
@@ -95,3 +95,4 @@ export const mealController = {
     getMealById,
     deleteMeal,
 };
+//# sourceMappingURL=meal.controller.js.map
