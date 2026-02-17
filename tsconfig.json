@@ -3,7 +3,7 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler" /* This removes the .js extension requirement */,
-    // "rootDir": "src",
+    "rootDir": ".",
     "outDir": "dist",
     "skipLibCheck": true,
     "esModuleInterop": true,
