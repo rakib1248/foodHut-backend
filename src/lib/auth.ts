@@ -58,28 +58,23 @@ export const auth = betterAuth({
     "https://foodhub-frontend-tau.vercel.app",
   ],
   advanced: {
-    useSecureCookies: true,
-    disableCSRFCheck: false,
-    disableOriginCheck: false,
-    crossSubDomainCookies: {
-      enabled: true,
-
-      domain: "https://foodhub-frontend-tau.vercel.app",
-    },
+    useSecureCookies: true, // মাস্ট
+    crossSubdomainCookie: true, // আপনার আগের ভুল স্পেলিংটি এখানে ঠিক করে নিন
 
     cookies: {
-      session_token: {
+      sessionToken: {
+        // ডকস অনুযায়ী 'session_token' অথবা Better-Auth এর ভার্সন অনুযায়ী 'sessionToken'
         attributes: {
-          sameSite:"None",
           httpOnly: true,
           secure: true,
+          sameSite: "none", // আপনার Cross-domain সমস্যার মূল সমাধান
         },
       },
     },
 
-    defaultCookieAttributes: {
-      httpOnly: true,
-      secure: true,
+    // Vercel/Render প্রক্সির জন্য এটি যোগ করা ভালো
+    ipAddress: {
+      ipAddressHeaders: ["x-forwarded-for"],
     },
   },
 });
