@@ -54,25 +54,39 @@ export const auth = betterAuth({
     },
   },
   advanced: {
-   
-    crossSubdomainCookie: true,
-
+    ipAddress: {
+      ipAddressHeaders: ["x-client-ip", "x-forwarded-for"],
+      disableIpTracking: false,
+    },
     useSecureCookies: true,
+    disableCSRFCheck: false,
+    disableOriginCheck: false,
+    crossSubDomainCookies: {
+      enabled: true,
+      additionalCookies: ["custom_cookie"],
+      domain: "example.com",
+    },
 
-  
     cookies: {
-      sessionToken: {
-     
+      session_token: {
+        name: "custom_session_token",
         attributes: {
-          sameSite: "none",
-          secure: true,
           httpOnly: true,
+          secure: true,
         },
       },
     },
+    trustedOrigins: [
+      "http://localhost:3000",
+      "https://foodhub-frontend-tau.vercel.app",
+    ],
+    defaultCookieAttributes: {
+      httpOnly: true,
+      secure: true,
+    },
+    // OAuth state configuration has been moved to account option
+    // Use account.storeStateStrategy and account.skipStateCookieCheck instead
+    cookiePrefix: "myapp",
+
   },
-  trustedOrigins: [
-    "http://localhost:3000",
-    "https://foodhub-frontend-tau.vercel.app",
-  ],
 });
