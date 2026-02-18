@@ -67,8 +67,8 @@ export const auth = betterAuth({
   //     },
   //   },
   // },
-  // trustedOrigins: [
-  //   "http://localhost:3000",
-  //   "https://foodhub-frontend-tau.vercel.app",
-  // ],
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://foodhub-frontend-tau.vercel.app",
+  ],
 });
