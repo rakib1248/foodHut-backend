@@ -50,7 +50,7 @@ export const auth = betterAuth({
   },
   session: {
     expiresIn: 60 * 60 * 24 * 7, // ৭ দিন
-    updateAge: 60 * 60 * 24 * 3, 
+    updateAge: 60 * 60 * 24 * 3,
     cookieCache: {
       enabled: true,
     },
@@ -58,11 +58,12 @@ export const auth = betterAuth({
   trustedOrigins: [
     "http://localhost:3000",
     "https://foodhub-frontend-tau.vercel.app",
+    "https://foodhub-frontend.netlify.app",
   ],
   advanced: {
     useSecureCookies: true, // মাস্ট
-     crossSubDomainCookies: {
-      enabled: true
+    crossSubDomainCookies: {
+      enabled: true,
     },
     defaultCookieAttributes: {
       httpOnly: true,
@@ -87,7 +88,6 @@ export const auth = betterAuth({
         sameSite: "none",
       },
     },
-
 
     // Vercel/Render প্রক্সির জন্য এটি যোগ করা ভালো
     ipAddress: {

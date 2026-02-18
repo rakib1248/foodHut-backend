@@ -41,20 +41,23 @@ export const auth = betterAuth({
         enabled: true,
         autoSignIn: false,
     },
-    // session: {
-    //   expiresIn: 60 * 60 * 24 * 7, // ৭ দিন
-    //   updateAge: 60 * 60 * 24 * 3, // ১ দিন পর পর আপডেট হবে
-    //   cookieCache: {
-    //     enabled: true,
-    //   },
-    // },
+    session: {
+        expiresIn: 60 * 60 * 24 * 7, // ৭ দিন
+        updateAge: 60 * 60 * 24 * 3,
+        cookieCache: {
+            enabled: true,
+        },
+    },
     trustedOrigins: [
         "http://localhost:3000",
         "https://foodhub-frontend-tau.vercel.app",
+        "https://foodhub-frontend.netlify.app",
     ],
     advanced: {
         useSecureCookies: true, // মাস্ট
-        crossSubdomainCookie: true, // আপনার আগের ভুল স্পেলিংটি এখানে ঠিক করে নিন
+        crossSubDomainCookies: {
+            enabled: true,
+        },
         defaultCookieAttributes: {
             httpOnly: true,
             secure: true,

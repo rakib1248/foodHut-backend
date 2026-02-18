@@ -17,6 +17,7 @@ app.use(cors({
     origin: [
         "http://localhost:3000",
         "https://foodhub-frontend-tau.vercel.app",
+        "https://foodhub-frontend.netlify.app",
     ],
     credentials: true,
 }));
