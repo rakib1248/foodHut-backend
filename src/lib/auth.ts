@@ -48,6 +48,27 @@ export const auth = betterAuth({
     enabled: true,
     autoSignIn: false,
   },
-
-  
+  session: {
+    cookieCache: {
+      enabled: true,
+    },
+  },
+  advanced: {
+    crossSubDomainCookies: {
+      enabled: false,
+    },
+    useSecureCookies: true,
+    cookies: {
+      session_token: {
+        attributes: {
+          sameSite: "none",
+          secure: true,
+        },
+      },
+    },
+  },
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://foodhub-frontend-tau.vercel.app",
+  ],
 });
