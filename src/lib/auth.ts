@@ -64,7 +64,7 @@ export const auth = betterAuth({
     crossSubDomainCookies: {
       enabled: true,
       additionalCookies: ["custom_cookie"],
-      domain: "example.com",
+      domain: "https://foodhub-frontend-tau.vercel.app",
     },
 
     cookies: {
@@ -87,6 +87,5 @@ export const auth = betterAuth({
     // OAuth state configuration has been moved to account option
     // Use account.storeStateStrategy and account.skipStateCookieCheck instead
     cookiePrefix: "myapp",
-
   },
 });
