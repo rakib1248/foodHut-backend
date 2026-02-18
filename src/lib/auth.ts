@@ -53,6 +53,10 @@ export const auth = betterAuth({
       enabled: true,
     },
   },
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://foodhub-frontend-tau.vercel.app",
+  ],
   advanced: {
     ipAddress: {
       ipAddressHeaders: ["x-client-ip", "x-forwarded-for"],
@@ -63,8 +67,6 @@ export const auth = betterAuth({
     disableOriginCheck: false,
     crossSubDomainCookies: {
       enabled: true,
-      additionalCookies: ["custom_cookie"],
-      domain: "https://foodhub-frontend-tau.vercel.app",
     },
 
     cookies: {
@@ -76,10 +78,7 @@ export const auth = betterAuth({
         },
       },
     },
-    trustedOrigins: [
-      "http://localhost:3000",
-      "https://foodhub-frontend-tau.vercel.app",
-    ],
+
     defaultCookieAttributes: {
       httpOnly: true,
       secure: true,
