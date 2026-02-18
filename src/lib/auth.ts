@@ -50,7 +50,7 @@ export const auth = betterAuth({
   },
   session: {
     expiresIn: 60 * 60 * 24 * 7, // ৭ দিন
-    updateAge: 60 * 60 * 24 * 3, // ১ দিন পর পর আপডেট হবে
+    updateAge: 60 * 60 * 24 * 3, 
     cookieCache: {
       enabled: true,
     },
@@ -61,7 +61,9 @@ export const auth = betterAuth({
   ],
   advanced: {
     useSecureCookies: true, // মাস্ট
-    crossSubdomainCookie: true, // আপনার আগের ভুল স্পেলিংটি এখানে ঠিক করে নিন
+     crossSubDomainCookies: {
+      enabled: true
+    },
     defaultCookieAttributes: {
       httpOnly: true,
       secure: true,
@@ -85,6 +87,7 @@ export const auth = betterAuth({
         sameSite: "none",
       },
     },
+
 
     // Vercel/Render প্রক্সির জন্য এটি যোগ করা ভালো
     ipAddress: {
