@@ -16,7 +16,6 @@ import { reviewRoute } from "./modules/review/review.route.js";
 
 const app: Express = express();
 
-
 app.use(
   cors({
     origin: [
@@ -30,13 +29,11 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-app.all("/api/auth/*splat", toNodeHandler(auth));
-
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
 app.use("/api/auth", authRoute);
+app.all("/api/auth/*splat", toNodeHandler(auth));
 app.use("/api", userRoute);
 app.use("/api", categoryRoute);
 app.use("/api", providerRoute);

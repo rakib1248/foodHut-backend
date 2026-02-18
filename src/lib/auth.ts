@@ -49,6 +49,8 @@ export const auth = betterAuth({
     autoSignIn: false,
   },
   session: {
+    expiresIn: 60 * 60 * 24 * 7, // ৭ দিন
+    updateAge: 60 * 60 * 24 * 3, // ১ দিন পর পর আপডেট হবে
     cookieCache: {
       enabled: true,
     },
@@ -60,6 +62,11 @@ export const auth = betterAuth({
   advanced: {
     useSecureCookies: true, // মাস্ট
     crossSubdomainCookie: true, // আপনার আগের ভুল স্পেলিংটি এখানে ঠিক করে নিন
+    defaultCookieAttributes: {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    },
 
     cookies: {
       sessionToken: {
@@ -69,6 +76,13 @@ export const auth = betterAuth({
           secure: true,
           sameSite: "none", // আপনার Cross-domain সমস্যার মূল সমাধান
         },
+      },
+    },
+    session_token: {
+      attributes: {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
       },
     },
 

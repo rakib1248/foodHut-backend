@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx tsx watch  src/server.ts",
-    "build": "prisma generate && tsc"
+    "build": "prisma generate && tsc",
+    "as" :"node dist/src/server.js"
 
   },
   "keywords": [],

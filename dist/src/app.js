@@ -13,15 +13,6 @@ import { orderRoute } from "./modules/order/order.route.js";
 import { cardRoute } from "./modules/card/card.route.js";
 import { reviewRoute } from "./modules/review/review.route.js";
 const app = express();
-// app.use(
-//   cors({
-//     origin: [
-//       "http://localhost:3000",
-//       "https://foodhub-frontend-tau.vercel.app",
-//     ],
-//     credentials: true,
-//   }),
-// );
 app.use(cors({
     origin: [
         "http://localhost:3000",
@@ -31,14 +22,11 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// Better Auth কে সবার আগে রাখো
-app.all("/api/auth/*splat", toNodeHandler(auth));
 app.get("/", (req, res) => {
     res.send("Hello, World!");
 });
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoute);
+app.all("/api/auth/*splat", toNodeHandler(auth));
 app.use("/api", userRoute);
 app.use("/api", categoryRoute);
 app.use("/api", providerRoute);
@@ -46,10 +34,6 @@ app.use("/api", mealRoute);
 app.use("/api", orderRoute);
 app.use("/api", cardRoute);
 app.use("/api", reviewRoute);
-// app.all("/api/auth/*splat", toNodeHandler(auth));
-// app.get("/", (req, res) => {
-//   res.send("Hello, World!");
-// });
 app.use(notFound);
 app.use(errorHandler);
 export default app;
