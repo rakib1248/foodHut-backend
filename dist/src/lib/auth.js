@@ -42,7 +42,7 @@ export const auth = betterAuth({
         autoSignIn: false,
     },
     session: {
-        expiresIn: 60 * 60 * 24 * 7, // ৭ দিন
+        expiresIn: 60 * 60 * 24 * 7,
         updateAge: 60 * 60 * 24 * 3,
         cookieCache: {
             enabled: true,
@@ -54,33 +54,32 @@ export const auth = betterAuth({
         "https://foodhub-frontend.netlify.app",
     ],
     advanced: {
-        useSecureCookies: true, // মাস্ট
+        useSecureCookies: true,
         crossSubDomainCookies: {
             enabled: true,
+            domain: "https://foodhub-frontend.netlify.app",
         },
         defaultCookieAttributes: {
-            httpOnly: true,
             secure: true,
             sameSite: "none",
+            partitioned: true,
         },
         cookies: {
             sessionToken: {
-                // ডকস অনুযায়ী 'session_token' অথবা Better-Auth এর ভার্সন অনুযায়ী 'sessionToken'
                 attributes: {
-                    httpOnly: true,
+                    partitioned: true,
                     secure: true,
-                    sameSite: "none", // আপনার Cross-domain সমস্যার মূল সমাধান
+                    sameSite: "none",
+                },
+            },
+            session_token: {
+                attributes: {
+                    partitioned: true,
+                    secure: false,
+                    sameSite: "none",
                 },
             },
         },
-        session_token: {
-            attributes: {
-                httpOnly: true,
-                secure: true,
-                sameSite: "none",
-            },
-        },
-        // Vercel/Render প্রক্সির জন্য এটি যোগ করা ভালো
         ipAddress: {
             ipAddressHeaders: ["x-forwarded-for"],
         },
