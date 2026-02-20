@@ -43,46 +43,65 @@ export const auth = betterAuth({
     },
     session: {
         expiresIn: 60 * 60 * 24 * 7,
-        updateAge: 60 * 60 * 24 * 3,
-        cookieCache: {
-            enabled: true,
-        },
+        updateAge: 60 * 60 * 24,
+        // cookieCache: {
+        //   enabled: true,
+        //   maxAge: 5 * 60, // 5 minutes
+        // },
     },
-    trustedOrigins: [
-        "http://localhost:3000",
-        "https://foodhub-frontend-tau.vercel.app",
-        "https://foodhub-frontend.netlify.app",
-    ],
+    trustedOrigins: async (request) => {
+        const origin = request?.headers.get("origin");
+        const allowedOrigins = [
+            "http://localhost:3000",
+            "https://foodhub-frontend-tau.vercel.app",
+            "https://foodhub-frontend.netlify.app",
+        ].filter(Boolean);
+        // Check if origin matches allowed origins or Vercel pattern
+        if (!origin ||
+            allowedOrigins.includes(origin) ||
+            /^https:\/\/.*\.vercel\.app$/.test(origin)) {
+            return [origin];
+        }
+        return [];
+    },
     advanced: {
-        useSecureCookies: true,
+        cookiePrefix: "better-auth",
+        useSecureCookies: process.env.NODE_ENV === "production",
         crossSubDomainCookies: {
-            enabled: true,
-            domain: "https://foodhub-frontend.netlify.app",
+            enabled: false,
         },
-        defaultCookieAttributes: {
-            secure: true,
-            sameSite: "none",
-            partitioned: true,
-        },
-        cookies: {
-            sessionToken: {
-                attributes: {
-                    partitioned: true,
-                    secure: true,
-                    sameSite: "none",
-                },
-            },
-            session_token: {
-                attributes: {
-                    partitioned: true,
-                    secure: false,
-                    sameSite: "none",
-                },
-            },
-        },
-        ipAddress: {
-            ipAddressHeaders: ["x-forwarded-for"],
-        },
+        disableCSRFCheck: true, // Allow requests without Origin header (Postman, mobile apps, etc.)
     },
+    // advanced: {
+    //   useSecureCookies: true,
+    //   crossSubDomainCookies: {
+    //     enabled: true,
+    //   },
+    //   defaultCookieAttributes: {
+    //     httpOnly: true,
+    //     secure: true,
+    //     sameSite: "none",
+    //   },
+    //   // cookies: {
+    //   //   sessionToken: {
+    //   //     attributes: {
+    //   //       httpOnly: true,
+    //   //       secure: true,
+    //   //       sameSite: "none",
+    //   //     },
+    //   //   },
+    //   //   session_token: {
+    //   //     attributes: {
+    //   //       // partitioned: true,
+    //   //       httpOnly: true,
+    //   //       secure: true,
+    //   //       sameSite: "none",
+    //   //     },
+    //   //   },
+    //   // },
+    //   // ipAddress: {
+    //   //   ipAddressHeaders: ["x-forwarded-for"],
+    //   // },
+    // },
 });
 //# sourceMappingURL=auth.js.map

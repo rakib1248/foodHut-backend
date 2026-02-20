@@ -13,14 +13,43 @@ import { orderRoute } from "./modules/order/order.route.js";
 import { cardRoute } from "./modules/card/card.route.js";
 import { reviewRoute } from "./modules/review/review.route.js";
 const app = express();
+// Configure CORS to allow both production and Vercel preview deployments
+const allowedOrigins = [
+    "http://localhost:3000",
+    "https://foodhub-frontend-tau.vercel.app",
+    "https://foodhub-frontend.netlify.app",
+].filter(Boolean); // Remove undefined values
 app.use(cors({
-    origin: [
-        "http://localhost:3000",
-        "https://foodhub-frontend-tau.vercel.app",
-        "https://foodhub-frontend.netlify.app",
-    ],
+    origin: (origin, callback) => {
+        // Allow requests with no origin (mobile apps, Postman, etc.)
+        if (!origin)
+            return callback(null, true);
+        // Check if origin is in allowedOrigins or matches Vercel preview pattern
+        const isAllowed = allowedOrigins.includes(origin) ||
+            /^https:\/\/next-blog-client.*\.vercel\.app$/.test(origin) ||
+            /^https:\/\/.*\.vercel\.app$/.test(origin); // Any Vercel deployment
+        if (isAllowed) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error(`Origin ${origin} not allowed by CORS`));
+        }
+    },
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
+    exposedHeaders: ["Set-Cookie"],
 }));
+// app.use(
+//   cors({
+//     origin: [
+//       "http://localhost:3000",
+//       "https://foodhub-frontend-tau.vercel.app",
+//       "https://foodhub-frontend.netlify.app",
+//     ],
+//     credentials: true,
+//   }),
+// );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
